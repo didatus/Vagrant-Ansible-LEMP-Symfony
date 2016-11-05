@@ -1,0 +1,19 @@
+---
+- name: download phpunit
+  get_url:
+    url: https://phar.phpunit.de/phpunit.phar
+    dest: /tmp/phpunit.phar
+  tags: phpunit
+
+- name: moving phpunit
+  shell: mv /tmp/phpunit.phar /usr/local/bin/phpunit
+  args:
+    creates: /usr/local/bin/phpunit
+  tags: phpunit
+
+- name: make phpunit executable
+  file:
+    path: /usr/local/bin/phpunit
+    mode: a+x
+    state: file
+  tags: phpunit

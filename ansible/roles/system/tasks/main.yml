@@ -1,0 +1,20 @@
+---
+  - name: dotdeb | add main repository
+    apt_repository: repo='{{ item }}' update_cache=yes
+    with_items:
+      - deb http://packages.dotdeb.org jessie all
+      - deb-src http://packages.dotdeb.org jessie all
+    tags: dotdeb
+
+  - name: dotdeb | install key
+    apt_key: url=http://www.dotdeb.org/dotdeb.gpg
+    tags: dotdeb
+
+  - name: Update apt
+    become: yes
+    apt:  update_cache=yes
+
+  - name: Install extra packages
+    become: yes
+    apt:  pkg={{ item }} state=latest
+    with_items: "{{ sys_packages }}"

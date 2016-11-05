@@ -1,0 +1,32 @@
+---
+- hosts: all
+  become: true
+  vars:
+    domain: symfony.local
+    sys_packages:
+      - mcrypt
+      - vim
+      - curl
+      - wget
+      - build-essential
+      - python-software-properties
+    php_packages:
+      - { name: dev, package: php5-dev }
+      - { name: pear, package: php-pear }
+      - { name: xdebug, package: php5-xdebug }
+      - { name: curl, package: php5-curl }
+      - { name: mcrypt, package: php5-mcrypt }
+      - { name: mysql, package: php5-mysql }
+      - { name: redis, package: php5-redis }
+      - { name: apc, package: php-apc }
+      - { name: memcached, package: php5-memcached }
+      - { name: sqlite, package: php5-sqlite }
+      - { name: gd, package: php5-gd }
+  roles:
+    - system
+    - php5
+    - mysql
+    - nginx
+    - composer
+    - phpunit
+    - symfony
