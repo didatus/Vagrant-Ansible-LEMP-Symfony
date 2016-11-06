@@ -22,6 +22,9 @@
       - { name: memcached, package: php5-memcached }
       - { name: sqlite, package: php5-sqlite }
       - { name: gd, package: php5-gd }
+    nodejs:
+      version: _5.x
+      packages: [bower, gulp]
   roles:
     - system
     - php5
@@ -30,3 +33,4 @@
     - composer
     - phpunit
     - symfony
+    - nodejs
